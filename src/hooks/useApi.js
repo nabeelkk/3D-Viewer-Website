@@ -2,13 +2,11 @@ import { useState, useCallback } from 'react';
 import axios from 'axios';
 import { API_BASE } from '../utils/constants';
 
-// Create axios instance with default config
 const api = axios.create({
   baseURL: API_BASE,
-  timeout: 30000, // 30 seconds
+  timeout: 30000, 
 });
 
-// Response interceptor for error handling
 api.interceptors.response.use(
   (response) => response,
   (error) => {

@@ -6,6 +6,8 @@ import ModelCard from '../components/ModelCard';
 import UploadModal from '../components/UploadModal';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { API_BASE } from '../utils/constants';
+import {confirmAlert} from '../utils/sweetalert.js'
+
 
 export default function Dashboard() {
   const [selectedModel, setSelectedModel] = useState(null);
@@ -18,7 +20,8 @@ export default function Dashboard() {
   };
 
   const handleDeleteModel = async (modelId) => {
-    if (!confirm('Are you sure you want to delete this model?')) return;
+    const confirmed = await confirmAlert('Are you sure?', 'This model will be permanently deleted.');
+    if (!confirmed) return;
 
     try {
       const result = await request({
